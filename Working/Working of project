@@ -1,0 +1,26 @@
+Working of project:
+The project consists of two sections .One in which Arduino collects the data from MQ3 sensor and GPS module and transferring the required data to Node red for further processing. Second part consists of displaying data on server.
+1) Sensing the alcohol from atmosphere
+Arduino microcontroller will sense alcohol value through digital output pin of MQ3 sensor and also receives the Latitude and Longitude coordinates from GPS module serially at pin no.4 at each and every seconds. Then it will sends the alcohol value ,latitude value and longitude value in string format separated by space serially to node red.
+
+Output on Serial Monitor of Arduino IDE :
+
+Node Red : Flow Diagram
+
+ 
+2) Processing and displaying of data
+As soon as the data becomes available at serial port of local host serial node will proceeds the data i.e.String in payload form. Then it will given to three  function node for fetching latitude value, longitude value and alcohol value using javascript language respectively. Also one another node is used to make decision on whether the alcohol has crossed the threshold or not.
+Also at server side one can see the real time looging of data at local host server of node red dashboard and can trace the person on local google map.
+
+Output on Node Red Dashboard: (http://localhost:1880/ui/#/1)
+1)Latitude Value :
+ 
+2)Longitude Value :
+
+ 
+3)Alcohol Value Of MQ3:
+ 
+
+5)Output on Google Map Running on Localhost (file:///C:/Users/prashant/Desktop/gpsmap.html)
+After processing the data it will sent to Thingspeak node to upload the data i.e.Latitude value ,Longitude value and MQ3 value on Thingspeak.com using GET request .Where using public or private view one can observe and analyse the data over internet
+
